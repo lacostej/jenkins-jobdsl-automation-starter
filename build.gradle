@@ -1,6 +1,8 @@
 apply plugin: 'groovy'
 
-sourceCompatibility = '1.8'
+java {
+    sourceCompatibility = '1.8'
+}
 
 sourceSets {
     gdsl {
