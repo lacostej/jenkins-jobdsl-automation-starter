@@ -34,6 +34,23 @@ apply from: 'jenkins_plugins.gradle'
 
 def jobDslVersion = '1.76'
 
+
+tasks.withType(AbstractCompile) {
+  options.compilerArgs += ["--add-opens", "java.base/java.util=ALL-UNNAMED"]
+  options.compilerArgs += ["--add-opens", "java.base/java.lang=ALL-UNNAMED"]
+  options.compilerArgs += ["--add-opens", "java.base/java.lang.reflect=ALL-UNNAMED"]
+  options.compilerArgs += ["--add-opens", "java.base/java.text=ALL-UNNAMED"]
+  options.compilerArgs += ["--add-opens", "java.desktop/java.awt.font=ALL-UNNAMED"]
+}
+
+tasks.withType(Test) {
+  jvmArgs += ["--add-opens", "java.base/java.util=ALL-UNNAMED"]
+  jvmArgs += ["--add-opens", "java.base/java.lang=ALL-UNNAMED"]
+  jvmArgs += ["--add-opens", "java.base/java.lang.reflect=ALL-UNNAMED"]
+  jvmArgs += ["--add-opens", "java.base/java.text=ALL-UNNAMED"]
+  jvmArgs += ["--add-opens", "java.desktop/java.awt.font=ALL-UNNAMED"]
+}
+
 dependencies {
     implementation 'org.codehaus.groovy:groovy-all:2.4.17'
     implementation "org.jenkins-ci.plugins:job-dsl-core:${jobDslVersion}"
